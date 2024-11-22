@@ -1,6 +1,10 @@
 import java.io.*;
 import java.nio.*;
 import static java.nio.file.StandardOpenOption.*;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -125,6 +129,25 @@ public class ListMaker {
 
     }
     private static void saveItem(){
+        File workingDirectory = new File(System.getProperty("user.dir"));
+        String fileName = SafeInput.getNonZeroLenString(in, "Enter the file name");
+        Path file = Paths.get(workingDirectory.getPath() + "\\src\\" + fileName);
+        try {
+            OutputStream out =
+                    new BufferedOutputStream(Files.newOutputStream(file, CREATE));
+            BufferedWriter writer
+                    = new BufferedWriter(new OutputStreamWriter(out));
+
+            for (String rec : list) {
+                writer.write(rec, 0, rec.length());
+                writer.newLine();
+            }
+            writer.close();
+            System.out.println("Data file written.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     }
     private static void clearList(){
