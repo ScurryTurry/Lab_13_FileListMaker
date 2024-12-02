@@ -1,0 +1,5 @@
+This one was really difficult
+I struggled getting the GUI to load
+The GUI would not load through the openItem function.
+I added an intialization period in the main, this was the only way to ensure it loaded later
+I am adding this line, then saving it again under MyList.txt
